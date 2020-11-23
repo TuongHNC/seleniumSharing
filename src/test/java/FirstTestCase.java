@@ -53,6 +53,8 @@ public class FirstTestCase {
         String bmiResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".rightresult .bigtext"))).getText();
         System.out.println(bmiResult);
 
+        // This is test for branch bla...bla...bla....
+
         // Quit Chrome
         webDriver.quit();
     }
