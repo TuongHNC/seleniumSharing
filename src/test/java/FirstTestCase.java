@@ -1,6 +1,13 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.util.List;
 
 public class FirstTestCase {
 
@@ -10,18 +17,41 @@ public class FirstTestCase {
         // Define Selenium WebDriver
         WebDriver webDriver = new ChromeDriver();
         // Open Chrome browser
-        webDriver.get("https://demoqa.com/login");
 
-        Thread.sleep(3000);
-        // Find by UserName text field
-        webDriver.findElement(By.xpath("//input[@id='userName']")).sendKeys("testuser");
-        Thread.sleep(3000);
-        // Find by Password text field
-        webDriver.findElement(By.xpath("//input[@type='password']")).sendKeys("Password@123");
-        Thread.sleep(3000);
-        // Find by Login button
-        webDriver.findElement(By.xpath("//button[@id='login']")).click();
-        Thread.sleep(4000);
+        //----------------------------------------------------------------------------------------------------------------
+//        webDriver.get("https://demoqa.com/automation-practice-form");
+//
+//        WebDriverWait wait = new WebDriverWait(webDriver,30);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='firstName']"))).sendKeys("Phuong Ngon");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='lastName']"))).sendKeys("Phan");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='userEmail']"))).sendKeys("andy@gmail.com");
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(
+//                By.xpath("//div[@id='userNumber-wrapper']//input[@id='userNumber']"))).sendKeys("123-123-123");
+//        Thread.sleep(3000);
+
+        //----------------------------------------------------------------------------------------------------------------
+
+        webDriver.get("https://www.calculator.net/bmi-calculator.html   ");
+        // Expand web browser
+//        webDriver.manage().window().maximize();
+
+        WebDriverWait wait = new WebDriverWait(webDriver,30);
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[.='Metric Units']"))).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='cage']"))).clear();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='cage']"))).sendKeys("35");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//label[@for='csex2']"))).click();
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='cheightmeter']"))).clear();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='cheightmeter']"))).sendKeys("170");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='ckg']"))).clear();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='ckg']"))).sendKeys("65");
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@value='Calculate']"))).click();
+
+        String bmiResult = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".rightresult .bigtext"))).getText();
+        System.out.println(bmiResult);
 
         // Quit Chrome
         webDriver.quit();
